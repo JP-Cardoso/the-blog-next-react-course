@@ -1,12 +1,25 @@
 import { PostModelType } from '@/models/post/post.model';
 import { PostRepositoryInterface } from './interface/post-repository';
-import { readFile } from 'node:fs/promises';
-import path from 'node:path';
+import { readFile } from 'fs/promises';
+import { resolve } from 'node:path';
 
 const ROOT_DIR = process.cwd();
-const JSON_POSTS_FILE_PATH = path.resolve(ROOT_DIR, 'db', 'seed', 'post.json');
+const JSON_POSTS_FILE_PATH = resolve(
+  ROOT_DIR,
+  'src',
+  'db',
+  'seed',
+  'posts.json',
+);
+const SIMULATE_WAIT_IN_MS = 0;
 
 export class JsonPostRepository implements PostRepositoryInterface {
+  private async simulateWait() {
+    if (SIMULATE_WAIT_IN_MS <= 0) return;
+
+    await new Promise(resolve => setTimeout(resolve, SIMULATE_WAIT_IN_MS));
+  }
+
   private async readFromDisk(): Promise<Array<PostModelType>> {
     const content = await readFile(JSON_POSTS_FILE_PATH, 'utf-8');
     const parsedContent = JSON.parse(content);
@@ -15,11 +28,15 @@ export class JsonPostRepository implements PostRepositoryInterface {
   }
 
   async findAll(): Promise<Array<PostModelType>> {
+    await this.simulateWait();
+
     const posts = await this.readFromDisk();
     return posts;
   }
 
   async findById(id: string): Promise<PostModelType> {
+    await this.simulateWait();
+
     const posts = await this.findAll();
     const post = posts.find(p => p.id === id);
 
