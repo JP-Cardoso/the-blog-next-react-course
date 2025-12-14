@@ -2,22 +2,13 @@ import { Suspense } from 'react';
 import PostsList from '@/components/PostsList';
 import SpinLoader from '@/components/SpinLoader';
 import Container from '@/components/Container';
+import Header from '@/components/Header';
 
 export default async function HomePage() {
   return (
     <Container>
-      <header>
-        <h1 className='text-6xl font-bold text-center py-8'>Header</h1>
-        <p className='text-justify'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, enim
-          eligendi? Velit nihil sint, autem excepturi, dolorem similique
-          blanditiis asperiores esse odit quaerat distinctio ex architecto nulla
-          corrupti eos nobis! Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Commodi, enim eligendi? Velit nihil sint, autem excepturi,
-          dolorem similique blanditiis asperiores esse odit quaerat distinctio
-          ex architecto nulla corrupti eos nobis!
-        </p>
-      </header>
+      <Header />
+
       <Suspense fallback={<SpinLoader />}>
         <PostsList />
       </Suspense>
