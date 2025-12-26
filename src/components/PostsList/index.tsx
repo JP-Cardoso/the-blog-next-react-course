@@ -1,6 +1,7 @@
+import { formatDateTime, formatDistanceToNow } from '@/utils/formate/datetime';
 import { postRepository } from '@/repositories/post';
-import PostCoverImage from '../PostCoverImage';
 import clsx from 'clsx';
+import PostCoverImage from '../PostCoverImage';
 import PostHeading from '../PostHeading';
 
 export default async function PostsList() {
@@ -34,8 +35,9 @@ export default async function PostsList() {
                 <time
                   className={clsx('text-slate-600 block text-sm/tight')}
                   dateTime={post.createdAt}
+                  title={formatDistanceToNow(post.createdAt)}
                 >
-                  {post.createdAt}
+                  {formatDateTime(post.createdAt)}
                 </time>
                 <PostHeading url={postLink} as='h2'>
                   {post.title}
