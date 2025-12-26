@@ -1,10 +1,10 @@
-import { postRepository } from '@/repositories/post';
 import clsx from 'clsx';
 import PostCoverImage from '../PostCoverImage';
 import PostSummary from '../PostSummary';
+import { findAllPublicPosts } from '@/lib/post/queries';
 
 export default async function PostsList() {
-  const posts = await postRepository.findAll();
+  const posts = await findAllPublicPosts();
 
   return (
     <div
@@ -15,7 +15,7 @@ export default async function PostsList() {
       )}
     >
       {posts?.length > 0 &&
-        posts?.map(post => {
+        posts.slice(1)?.map(post => {
           const postLink = `/post/${post.slug}`;
           return (
             <div className={clsx('flex flex-col gap-4 group')} key={post.id}>
