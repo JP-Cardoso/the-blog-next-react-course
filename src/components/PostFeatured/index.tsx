@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import PostCoverImage from '../PostCoverImage';
-import PostHeading from '../PostHeading';
+import PostSummary from '../PostSummary';
 
 export default function PostFeatured() {
   return (
@@ -19,21 +19,15 @@ export default function PostFeatured() {
           href: '#',
         }}
       />
-      <div className={clsx('flex flex-col gap-4', 'sm:justify-center')}>
-        <time
-          className={clsx('text-slate-600 block text-sm/tight')}
-          dateTime='2025-12-14'
-        >
-          14/12/2025 10:00
-        </time>
-        <PostHeading url='#' as='h1'>
-          Nobis vitae animi
-        </PostHeading>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit
-        consequatur harum provident qui aliquam quam! Nobis vitae animi
-        voluptates dolores, voluptatem, debitis veritatis iste et dicta, esse
-        optio minus omnis.
-      </div>
+      <PostSummary
+        postLink='#'
+        postHeading='h1'
+        createdAt={'2025-04-08T00:24:38.616Z'}
+        excerpt={
+          'O Next.js também é uma boa escolha para quem quer se preocupar com performance e SEO.'
+        }
+        title={'Rotina matinal de pessoas altamente eficazes'}
+      />
     </section>
   );
 }

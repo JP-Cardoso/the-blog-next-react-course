@@ -1,8 +1,7 @@
-import { formatDateTime, formatDistanceToNow } from '@/utils/formate/datetime';
 import { postRepository } from '@/repositories/post';
 import clsx from 'clsx';
 import PostCoverImage from '../PostCoverImage';
-import PostHeading from '../PostHeading';
+import PostSummary from '../PostSummary';
 
 export default async function PostsList() {
   const posts = await postRepository.findAll();
@@ -31,20 +30,14 @@ export default async function PostsList() {
                   href: postLink,
                 }}
               />
-              <div className={clsx('flex flex-col gap-4', 'sm:justify-center')}>
-                <time
-                  className={clsx('text-slate-600 block text-sm/tight')}
-                  dateTime={post.createdAt}
-                  title={formatDistanceToNow(post.createdAt)}
-                >
-                  {formatDateTime(post.createdAt)}
-                </time>
-                <PostHeading url={postLink} as='h2'>
-                  {post.title}
-                </PostHeading>
 
-                <p>{post.excerpt}</p>
-              </div>
+              <PostSummary
+                postLink={postLink}
+                postHeading='h2'
+                createdAt={post.createdAt}
+                excerpt={post.excerpt}
+                title={post.title}
+              />
             </div>
           );
         })}
