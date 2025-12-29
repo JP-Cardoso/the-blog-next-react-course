@@ -1,3 +1,5 @@
+import { findPostBySlugCached } from '@/lib/post/queries';
+
 type PostSlugPageProps = {
   params: Promise<{ slug: string }>;
 };
@@ -5,9 +7,11 @@ type PostSlugPageProps = {
 export default async function PostSlugPage({ params }: PostSlugPageProps) {
   const { slug } = await params;
 
+  const post = await findPostBySlugCached(slug);
+
   return (
     <>
-      <h1 className='text-7xl py-16'>Olá mundo, rota dinamica {slug}</h1>
+      <h1>{post?.title}</h1>
     </>
   );
 }
