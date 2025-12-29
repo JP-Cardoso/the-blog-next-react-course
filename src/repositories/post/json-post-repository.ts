@@ -11,7 +11,7 @@ const JSON_POSTS_FILE_PATH = resolve(
   'seed',
   'posts.json',
 );
-const SIMULATE_WAIT_IN_MS = 0;
+const SIMULATE_WAIT_IN_MS = 5000;
 
 export class JsonPostRepository implements PostRepositoryInterface {
   private async simulateWait() {
@@ -35,7 +35,7 @@ export class JsonPostRepository implements PostRepositoryInterface {
   }
 
   async findById(id: string): Promise<PostModelType> {
-    await this.simulateWait();
+    // await this.simulateWait();
 
     const posts = await this.findAllPublic();
     const post = posts.find(p => p.id === id);
@@ -46,7 +46,7 @@ export class JsonPostRepository implements PostRepositoryInterface {
   }
 
   async findBySlug(slug: string): Promise<PostModelType> {
-    await this.simulateWait();
+    // await this.simulateWait();
 
     const posts = await this.findAllPublic();
     const post = posts.find(p => p.slug === slug);
