@@ -1,30 +1,15 @@
-import clsx from 'clsx';
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: {
-    default: 'Página não encontrada',
-    template: 'The blog',
-  },
-};
+import ErrorMessage from '@/components/ErrorMessage';
 
 export default function NotFoundPage() {
+  const pageTitle = 'Página não encontrada';
+  const contentTitle = '404';
+  const content = `Erro 404 - A página que você está tentando acessar não existe nesse site.`;
+
   return (
-    <div
-      className={clsx(
-        'min-h-[320] bg-slate-900 text-slate-100',
-        'mb-16 p-8 rounded-xl',
-        'flex items-center justify-center',
-        'text-center',
-      )}
-    >
-      <div>
-        <h1 className='text-7xl/tight mb-4 font-extrabold'>404</h1>
-        <p>
-          Erro 404 - A página que você está tentando acessar não existe nesse
-          site.
-        </p>
-      </div>
-    </div>
+    <ErrorMessage
+      pageTitle={pageTitle}
+      cotentTitle={contentTitle}
+      content={content}
+    />
   );
 }
