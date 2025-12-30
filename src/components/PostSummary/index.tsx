@@ -1,7 +1,6 @@
-import { formatDateTime, formatDistanceToNow } from '@/utils/formate/datetime';
 import clsx from 'clsx';
 import PostHeading from '../PostHeading';
-import { PostModelType } from '@/models/post/post.model';
+import PostDate from '../PostDate';
 
 type PostSummaryProps = {
   postHeading: 'h1' | 'h2';
@@ -20,13 +19,8 @@ export default function PostSummary({
 }: PostSummaryProps) {
   return (
     <div className={clsx('flex flex-col gap-4', 'sm:justify-center')}>
-      <time
-        className={clsx('text-slate-600 block text-sm/tight')}
-        dateTime={createdAt}
-        title={formatDistanceToNow(createdAt)}
-      >
-        {formatDateTime(createdAt)}
-      </time>
+      <PostDate createdAt={createdAt} />
+
       <PostHeading url={postLink} as={postHeading}>
         {title}
       </PostHeading>
