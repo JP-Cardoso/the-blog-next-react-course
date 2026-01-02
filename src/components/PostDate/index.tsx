@@ -6,6 +6,8 @@ type PostDateProps = {
 };
 
 export default function PostDate({ createdAt }: PostDateProps) {
+  if (!createdAt) return '';
+
   return (
     <time
       className={clsx('text-slate-600 text-sm/tight')}

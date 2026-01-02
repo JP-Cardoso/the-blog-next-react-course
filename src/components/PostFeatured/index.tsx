@@ -7,7 +7,7 @@ export default async function PostFeatured() {
   const posts = await findAllPublicPostsCached();
   const post = posts[0];
 
-  const postLink = `/post/${post.slug}`;
+  const postLink = `/post/${post?.slug}`;
 
   return (
     <section
@@ -15,11 +15,11 @@ export default async function PostFeatured() {
     >
       <PostCoverImage
         imageProps={{
-          src: post.coverImageUrl,
+          src: post?.coverImageUrl,
           width: 1200,
           height: 720,
           priority: true,
-          alt: post.title,
+          alt: post?.title,
         }}
         linkProps={{
           href: '#',
@@ -28,9 +28,9 @@ export default async function PostFeatured() {
       <PostSummary
         postLink={postLink}
         postHeading='h1'
-        createdAt={post.createdAt}
-        excerpt={post.excerpt}
-        title={post.title}
+        createdAt={post?.createdAt}
+        excerpt={post?.excerpt}
+        title={post?.title}
       />
     </section>
   );
